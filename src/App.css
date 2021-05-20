@@ -1,20 +1,8 @@
 .App {
   display: grid;
-  grid-template-rows: min-content auto min-content;
+  grid-template-rows: 60px auto 60px;
   height: 100vh;
-  padding: 12px;
-  gap: 20px;
-}
-
-.App__player-list {
-  display: grid;
-  align-content: start;
-  gap: 10px;
-  list-style: none;
-  padding: 0;
-}
-
-.App__buttons {
-  display: grid;
-  gap: 12px;
+  width: 100vw;
+  padding: 12px 12px 0 12px;
+  position: fixed;
 }

@@ -16,4 +16,5 @@ const ButtonStyled = styled.button`
   border: none;
   background: ${p => (p.isActive ? 'steelblue' : '#ddd')};
   border-radius: 8px;
+  cursor: pointer;
 `

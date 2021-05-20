@@ -1,56 +1,67 @@
 import { useState } from 'react'
 import './App.css'
-import Button from './components/Button'
-import Player from './components/Player'
-import PlayerForm from './components/PlayerForm'
+
+import PlayPage from './PlayPage'
+import GamePage from './GamePage'
+import HistoryPage from './HistoryPage'
 
 function App() {
-  const [players, setPlayers] = useState([])
+  const [game, setGame] = useState({})
+  const [gameHistory, setGameHistory] = useState([])
+  const [activePage, setActivePage] = useState('play')
 
   return (
-    <div className="App">
-      <PlayerForm onSubmit={createPlayer} />
-
-      <ul className="App__player-list">
-        {players.map((player, index) => (
-          <li>
-            <Player
-              onMinus={() => updateScore(index, -1)}
-              onPlus={() => updateScore(index, 1)}
-              key={player.name}
-              name={player.name}
-              score={player.score}
-            />
-          </li>
-        ))}
-      </ul>
-
-      <div className="App__buttons">
-        <Button onClick={resetScores}>Reset scores</Button>
-        <Button onClick={resetAll}>Reset all</Button>
-      </div>
-    </div>
+    <>
+      {activePage === 'play' && (
+        <PlayPage
+          handleGameSubmit={handleGameSubmit}
+          activePage={activePage}
+          handleNavigate={handleNavigate}
+        />
+      )}
+      {activePage === 'game' && (
+        <GamePage
+          game={game}
+          updateScore={updateScore}
+          handleEndGame={handleEndGame}
+        />
+      )}
+      {activePage === 'history' && (
+        <HistoryPage
+          gameHistory={gameHistory}
+          activePage={activePage}
+          handleNavigate={handleNavigate}
+        />
+      )}
+    </>
   )
 
-  function resetAll() {
-    setPlayers([])
-  }
+  function handleGameSubmit(gameName, playerNames) {
+    const players = playerNames.split(',').map(player => {
+      return { name: player.trim(' '), score: 0 }
+    })
+    setGame({ gameName: gameName, players })
 
-  function resetScores() {
-    setPlayers(players.map(player => ({ ...player, score: 0 })))
+    setActivePage('game')
+  }
+  function handleNavigate(id) {
+    setActivePage(id)
+  }
+  function handleEndGame() {
+    setGameHistory([...gameHistory, game])
+    setActivePage('history')
+    setGame([])
   }
 
   function updateScore(index, value) {
-    const playerToUpdate = players[index]
-    setPlayers(players => [
+    const playerToUpdate = game.players[index]
+    const players = game.players
+    const updatedPlayers = [
       ...players.slice(0, index),
       { ...playerToUpdate, score: playerToUpdate.score + value },
       ...players.slice(index + 1),
-    ])
-  }
-
-  function createPlayer(name) {
-    setPlayers([...players, { name, score: 0 }])
+    ]
+    setGame({ ...game, players: updatedPlayers })
   }
 }
 
