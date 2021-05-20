@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import GameForm from './components/GameForm'
-import Header from './components/Header'
-import Navigation from './components/Navigation'
+import GameForm from '../components/GameForm'
+import Header from '../components/Header'
+import Navigation from '../components/Navigation'
 
 const PlayPage = ({ handleGameSubmit, activePage, handleNavigate }) => {
   return (

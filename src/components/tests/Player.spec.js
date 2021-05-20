@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import Player from './Player'
+import Player from '../Player'
 
 describe('Player', () => {
   it('returns a name, score and two buttons', async () => {

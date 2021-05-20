@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import Button from './components/Button'
-import Game from './components/Game'
-import Header from './components/Header'
+import Button from '../components/lowLevel/Button'
+import Game from '../components/Game'
+import Header from '../components/Header'
 
 const GamePage = ({ game, updateScore, handleEndGame }) => {
   return (

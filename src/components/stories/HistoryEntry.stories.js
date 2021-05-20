@@ -1,5 +1,5 @@
 import React from 'react'
-import HistoryEntry from './HistoryEntry'
+import HistoryEntry from '../HistoryEntry'
 
 export default {
   title: 'HistoryEntry',

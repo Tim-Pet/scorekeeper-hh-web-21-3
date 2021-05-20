@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import Header from './components/Header'
-import HistoryEntry from './components/HistoryEntry'
-import Navigation from './components/Navigation'
+import Header from '../components/Header'
+import HistoryEntry from '../components/HistoryEntry'
+import Navigation from '../components/Navigation'
 
 const HistoryPage = ({ gameHistory, activePage, handleNavigate }) => {
   return (
@@ -11,6 +11,7 @@ const HistoryPage = ({ gameHistory, activePage, handleNavigate }) => {
       <Main>
         {gameHistory.map(gameEntry => (
           <HistoryEntry
+            key={gameEntry.id}
             nameOfGame={gameEntry.gameName}
             players={gameEntry.players}
           />
