@@ -1,19 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
-import Button from './Button'
+import Button from './lowLevel/Button'
 
 const GameForm = ({ onSubmit }) => {
   return (
     <Form onSubmit={handleSubmit}>
-      <StyledLabel htmlFor="gameName">Name of the game:</StyledLabel>
-      <StyledInput
+      <LabelStyled htmlFor="gameName">Name of the game:</LabelStyled>
+      <InputStyled
         name="gameName"
         id="gameName"
         type="text"
         placeholder="game name"
       />
-      <StyledLabel htmlFor="playerNames">Add player:</StyledLabel>
-      <StyledInput
+      <LabelStyled htmlFor="playerNames">Add player:</LabelStyled>
+      <InputStyled
         name="playerNames"
         id="playerNames"
         type="text"
@@ -38,10 +38,10 @@ export default GameForm
 const Form = styled.form`
   display: grid;
 `
-const StyledLabel = styled.label`
+const LabelStyled = styled.label`
   margin-bottom: 5px;
 `
-const StyledInput = styled.input`
+const InputStyled = styled.input`
   margin-bottom: 30px;
   border-radius: 8px;
   border: 1px solid #333;

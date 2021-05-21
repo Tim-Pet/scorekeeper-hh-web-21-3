@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
-import Button from './Button'
+import Button from './lowLevel/Button'
 
 Navigation.propTypes = {
   onNavigate: PropTypes.func.isRequired,

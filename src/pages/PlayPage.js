@@ -1,16 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
-import GameForm from './components/GameForm'
-import Header from './components/Header'
-import Navigation from './components/Navigation'
+import GameForm from '../components/GameForm'
+import Header from '../components/Header'
+import Navigation from '../components/Navigation'
 
 const PlayPage = ({ handleGameSubmit, activePage, handleNavigate }) => {
   return (
-    <AppContainer>
+    <Container>
       <Header>New Game</Header>
-      <Main>
+      <Body>
         <GameForm onSubmit={handleGameSubmit} />
-      </Main>
+      </Body>
       <Navigation
         currentPageId={activePage}
         onNavigate={handleNavigate}
@@ -19,13 +19,13 @@ const PlayPage = ({ handleGameSubmit, activePage, handleNavigate }) => {
           { title: 'History', id: 'history' },
         ]}
       />
-    </AppContainer>
+    </Container>
   )
 }
 
 export default PlayPage
 
-const AppContainer = styled.div`
+const Container = styled.div`
   display: grid;
   grid-template-rows: 60px auto 60px;
   height: 100vh;
@@ -33,7 +33,7 @@ const AppContainer = styled.div`
   position: fixed;
 `
 
-const Main = styled.main`
+const Body = styled.section`
   overflow-y: auto;
   padding: 16px;
 `

@@ -1,24 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
-import Button from './components/Button'
-import Game from './components/Game'
-import Header from './components/Header'
+import Button from '../components/lowLevel/Button'
+import Game from '../components/Game'
+import Header from '../components/Header'
 
 const GamePage = ({ game, updateScore, handleEndGame }) => {
   return (
-    <AppContainer>
+    <Container>
       <Header>History</Header>
-      <Main>
+      <Body>
         <Game game={game} onMinus={updateScore} onPlus={updateScore} />
-      </Main>
+      </Body>
       <Button onClick={handleEndGame}>End game</Button>
-    </AppContainer>
+    </Container>
   )
 }
 
 export default GamePage
 
-const AppContainer = styled.div`
+const Container = styled.div`
   display: grid;
   grid-template-rows: 60px auto 60px;
   height: 100vh;
@@ -26,7 +26,7 @@ const AppContainer = styled.div`
   position: fixed;
 `
 
-const Main = styled.main`
+const Body = styled.section`
   overflow-y: auto;
   padding: 16px;
 `

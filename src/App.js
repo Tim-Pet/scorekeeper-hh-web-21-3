@@ -1,9 +1,8 @@
 import { useState } from 'react'
-import './App.css'
-
-import PlayPage from './PlayPage'
-import GamePage from './GamePage'
-import HistoryPage from './HistoryPage'
+import { v4 as uuidv4 } from 'uuid'
+import PlayPage from './pages/PlayPage'
+import GamePage from './pages/GamePage'
+import HistoryPage from './pages/HistoryPage'
 
 function App() {
   const [game, setGame] = useState({})
@@ -44,11 +43,14 @@ function App() {
 
     setActivePage('game')
   }
+
   function handleNavigate(id) {
     setActivePage(id)
   }
+
   function handleEndGame() {
-    setGameHistory([...gameHistory, game])
+    const currentGame = { ...game, id: uuidv4() }
+    setGameHistory([...gameHistory, currentGame])
     setActivePage('history')
     setGame([])
   }

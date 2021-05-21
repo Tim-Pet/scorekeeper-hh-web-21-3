@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import HistoryEntry from './HistoryEntry'
+import HistoryEntry from '../HistoryEntry'
 
 describe('HistoryEntry', () => {
   it('renders a title and players', async () => {
