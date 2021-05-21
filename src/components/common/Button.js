@@ -12,9 +12,9 @@ export default function Button(props) {
 }
 
 const ButtonStyled = styled.button`
-  padding: 12px;
-  border: none;
   background: ${p => (p.isActive ? 'steelblue' : '#ddd')};
   border-radius: 8px;
+  border: none;
   cursor: pointer;
+  padding: 12px;
 `

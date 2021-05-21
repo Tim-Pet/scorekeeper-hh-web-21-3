@@ -1,15 +1,24 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
+import Button from '../components/common/Button'
+import { Container } from '../components/common/Container'
 import Game from '../components/Game'
-import Button from '../components/lowLevel/Button'
 
 const GamePage = ({ game, updateScore, handleEndGame }) => {
+  let history = useHistory()
+
   return (
-    <>
+    <Container>
       <Game game={game} onMinus={updateScore} onPlus={updateScore} />
-      <EndButton onClick={handleEndGame}>End game</EndButton>
-    </>
+      <EndButton onClick={handleClick}>End game</EndButton>
+    </Container>
   )
+
+  function handleClick(event) {
+    handleEndGame(event)
+    history.push('/history')
+  }
 }
 
 export default GamePage
