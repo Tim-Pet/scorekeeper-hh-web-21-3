@@ -1,5 +1,5 @@
-import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
+import styled from 'styled-components/macro'
 
 HistoryEntry.propTypes = {
   nameOfGame: PropTypes.string,
@@ -12,10 +12,10 @@ export default function HistoryEntry({ nameOfGame, players }) {
     <Grid>
       <Title>{nameOfGame}</Title>
       <ul>
-        {players.map(player => (
-          <Player key={player.name}>
-            <span>{player.name}</span>
-            <span>{player.score}</span>
+        {players.map(({ name, score }) => (
+          <Player key={name}>
+            <span>{name}</span>
+            <span>{score}</span>
           </Player>
         ))}
       </ul>
