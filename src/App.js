@@ -15,7 +15,7 @@ function App() {
         <PlayPage
           handleGameSubmit={handleGameSubmit}
           activePage={activePage}
-          handleNavigate={handleNavigate}
+          handleNavigate={setActivePage}
         />
       )}
       {activePage === 'game' && (
@@ -29,7 +29,7 @@ function App() {
         <HistoryPage
           gameHistory={gameHistory}
           activePage={activePage}
-          handleNavigate={handleNavigate}
+          handleNavigate={setActivePage}
         />
       )}
     </>
@@ -40,19 +40,13 @@ function App() {
       return { name: player.trim(' '), score: 0 }
     })
     setGame({ gameName: gameName, players })
-
     setActivePage('game')
-  }
-
-  function handleNavigate(id) {
-    setActivePage(id)
   }
 
   function handleEndGame() {
     const currentGame = { ...game, id: uuidv4() }
     setGameHistory([...gameHistory, currentGame])
     setActivePage('history')
-    setGame([])
   }
 
   function updateScore(index, value) {
