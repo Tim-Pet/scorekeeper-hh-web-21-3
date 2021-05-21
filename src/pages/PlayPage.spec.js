@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
-import { createMemoryHistory } from 'history'
 import userEvent from '@testing-library/user-event'
-import PlayPage from './PlayPage'
+import { createMemoryHistory } from 'history'
 import { Router } from 'react-router-dom'
+import PlayPage from './PlayPage'
 
 describe('PlayPage', () => {
   const testFunction = jest.fn()
@@ -15,7 +15,6 @@ describe('PlayPage', () => {
 
   it('calls submit', async () => {
     const history = createMemoryHistory()
-    const testFunction = jest.fn()
 
     render(
       <Router history={history}>
@@ -29,7 +28,6 @@ describe('PlayPage', () => {
 
   it('Submit triggers path change', () => {
     const history = createMemoryHistory()
-    const testFunction = jest.fn()
 
     render(
       <Router history={history}>
