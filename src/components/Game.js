@@ -3,7 +3,7 @@ import Player from './Player'
 
 const Game = ({ game, onMinus, onPlus }) => {
   return (
-    <div>
+    <>
       <h3>{game.gameName}</h3>
       {game.players.map((player, index) => (
         <Player
@@ -14,7 +14,7 @@ const Game = ({ game, onMinus, onPlus }) => {
           onPlus={() => onPlus(index, +1)}
         />
       ))}
-    </div>
+    </>
   )
 }
 
