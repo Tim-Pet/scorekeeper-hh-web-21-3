@@ -1,8 +1,11 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
-import Button from './lowLevel/Button'
+import Button from './common/Button'
 
 const GameForm = ({ onSubmit }) => {
+  let history = useHistory()
+
   return (
     <Form onSubmit={handleSubmit}>
       <LabelStyled htmlFor="gameName">Name of the game:</LabelStyled>
@@ -30,6 +33,7 @@ const GameForm = ({ onSubmit }) => {
     const playersInput = form.elements.playerNames
     onSubmit(gameInput.value, playersInput.value)
     form.reset()
+    history.push(`/game`)
   }
 }
 
@@ -42,8 +46,8 @@ const LabelStyled = styled.label`
   margin-bottom: 5px;
 `
 const InputStyled = styled.input`
-  margin-bottom: 30px;
   border-radius: 8px;
   border: 1px solid #333;
+  margin-bottom: 30px;
   padding: 8px;
 `

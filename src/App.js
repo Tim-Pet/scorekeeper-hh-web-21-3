@@ -1,11 +1,11 @@
 import { useState } from 'react'
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
-import styled from 'styled-components'
-import PlayPage from './pages/PlayPage'
+import Header from './components/Header'
+import Navigation from './components/Navigation'
 import GamePage from './pages/GamePage'
 import HistoryPage from './pages/HistoryPage'
-import Navigation from './components/Navigation'
-import Header from './components/Header'
+import PlayPage from './pages/PlayPage'
 
 function App() {
   const [game, setGame] = useState({})
@@ -18,39 +18,45 @@ function App() {
   ]
 
   return (
-    <Container>
+    <BrowserRouter>
       <Header>{activePage}</Header>
-      <Body>
-        {activePage === 'play' && (
+      <Switch>
+        <Route exact path="/">
+          <Redirect to={`/${activePage}`} />
+        </Route>
+        <Route exact path="/play">
           <PlayPage
             handleGameSubmit={handleGameSubmit}
             activePage={activePage}
             handleNavigate={setActivePage}
           />
-        )}
-        {activePage === 'game' && (
+          <Navigation
+            onNavigate={setActivePage}
+            pages={pages}
+            currentPageId={activePage}
+          />
+        </Route>
+        <Route path="/game">
           <GamePage
             game={game}
             updateScore={updateScore}
             handleEndGame={handleEndGame}
           />
-        )}
-        {activePage === 'history' && (
+        </Route>
+        <Route exact path="/history">
           <HistoryPage
             gameHistory={gameHistory}
             activePage={activePage}
             handleNavigate={setActivePage}
           />
-        )}
-      </Body>
-      {activePage !== 'game' && (
-        <Navigation
-          onNavigate={setActivePage}
-          pages={pages}
-          currentPageId={activePage}
-        />
-      )}
-    </Container>
+          <Navigation
+            onNavigate={setActivePage}
+            pages={pages}
+            currentPageId={activePage}
+          />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   )
 
   function handleGameSubmit(gameName, playerNames) {
@@ -80,15 +86,3 @@ function App() {
 }
 
 export default App
-
-const Container = styled.div`
-  display: grid;
-  height: 100vh;
-  width: 100%;
-  grid-template-rows: 60px auto 60px;
-  position: fixed;
-`
-const Body = styled.section`
-  overflow-y: auto;
-  padding: 16px;
-`

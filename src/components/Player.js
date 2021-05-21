@@ -1,5 +1,5 @@
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 Player.propTypes = {
   name: PropTypes.string,
@@ -21,17 +21,17 @@ export default function Player({ name, score, onMinus, onPlus }) {
 }
 
 const PlayerContainer = styled.section`
-  display: flex;
-  justify-content: space-between;
   align-items: center;
+  display: flex;
   gap: 8px;
+  justify-content: space-between;
 `
 const ButtonContainer = styled.div`
+  align-items: center;
   display: flex;
   gap: 10px;
-  align-items: center;
 `
 const PlayerScore = styled.output`
-  width: 3ch;
   text-align: right;
+  width: 3ch;
 `

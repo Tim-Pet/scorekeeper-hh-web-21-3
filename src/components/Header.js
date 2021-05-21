@@ -1,5 +1,5 @@
-import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
+import styled from 'styled-components/macro'
 
 Header.propTypes = {
   children: PropTypes.node,
@@ -11,9 +11,9 @@ export default function Header({ children }) {
 
 const HeaderStyled = styled.h2`
   display: grid;
-  place-items: center;
-  padding: 8px;
-  margin: 0;
   font-size: 1.2em;
   font-weight: 500;
+  margin: 0;
+  padding: 8px;
+  place-items: center;
 `
