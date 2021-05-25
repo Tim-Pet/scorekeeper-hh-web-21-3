@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import Header from './components/Header'
 import Navigation from './components/Navigation'
@@ -18,7 +18,7 @@ function App() {
   ]
 
   return (
-    <BrowserRouter>
+    <>
       <Header>{activePage}</Header>
       <Switch>
         <Route exact path="/">
@@ -56,7 +56,7 @@ function App() {
           />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </>
   )
 
   function handleGameSubmit(gameName, playerNames) {
