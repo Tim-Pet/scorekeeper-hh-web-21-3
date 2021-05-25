@@ -4,12 +4,14 @@ import styled from 'styled-components'
 import Button from '../components/common/Button'
 import { Container } from '../components/common/Container'
 import Game from '../components/Game'
+import Header from '../components/Header'
 
 const GamePage = ({ game, updateScore, handleEndGame }) => {
   let history = useHistory()
 
   return (
     <Container>
+      <Header>Current Game</Header>
       <Game game={game} onMinus={updateScore} onPlus={updateScore} />
       <EndButton onClick={handleClick}>End game</EndButton>
     </Container>

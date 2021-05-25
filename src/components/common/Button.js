@@ -7,8 +7,8 @@ Button.propTypes = {
   children: PropTypes.node,
 }
 
-export default function Button(props) {
-  return <ButtonStyled {...props} />
+export default function Button({ component = 'button', ...props }) {
+  return <ButtonStyled as={component} {...props} />
 }
 
 const ButtonStyled = styled.button`

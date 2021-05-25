@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import { Route, Switch, useHistory } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
-import Header from './components/Header'
 import Navigation from './components/Navigation'
 import GamePage from './pages/GamePage'
 import HistoryPage from './pages/HistoryPage'
@@ -10,31 +9,21 @@ import PlayPage from './pages/PlayPage'
 function App() {
   const [game, setGame] = useState({})
   const [gameHistory, setGameHistory] = useState([])
-  const [activePage, setActivePage] = useState('play')
-
+  const history = useHistory()
   const pages = [
-    { title: 'Play', id: 'play' },
-    { title: 'History', id: 'history' },
+    { title: 'Create', id: '/' },
+    {
+      title: 'History',
+      id: 'history',
+      disabled: !gameHistory.length,
+    },
   ]
 
   return (
-    <BrowserRouter>
-      <Header>{activePage}</Header>
+    <>
       <Switch>
         <Route exact path="/">
-          <Redirect to={`/${activePage}`} />
-        </Route>
-        <Route exact path="/play">
-          <PlayPage
-            handleGameSubmit={handleGameSubmit}
-            activePage={activePage}
-            handleNavigate={setActivePage}
-          />
-          <Navigation
-            onNavigate={setActivePage}
-            pages={pages}
-            currentPageId={activePage}
-          />
+          <PlayPage handleGameSubmit={handleGameSubmit} />
         </Route>
         <Route path="/game">
           <GamePage
@@ -43,20 +32,14 @@ function App() {
             handleEndGame={handleEndGame}
           />
         </Route>
-        <Route exact path="/history">
-          <HistoryPage
-            gameHistory={gameHistory}
-            activePage={activePage}
-            handleNavigate={setActivePage}
-          />
-          <Navigation
-            onNavigate={setActivePage}
-            pages={pages}
-            currentPageId={activePage}
-          />
+        <Route path="/history">
+          <HistoryPage gameHistory={gameHistory} />
         </Route>
       </Switch>
-    </BrowserRouter>
+      <Route exact path={['/', '/history']}>
+        <Navigation pages={pages} />
+      </Route>
+    </>
   )
 
   function handleGameSubmit(gameName, playerNames) {
@@ -64,13 +47,13 @@ function App() {
       return { name: player.trim(' '), score: 0 }
     })
     setGame({ gameName: gameName, players })
-    setActivePage('game')
+    history.push('game')
   }
 
   function handleEndGame() {
     const currentGame = { ...game, id: uuidv4() }
     setGameHistory([...gameHistory, currentGame])
-    setActivePage('history')
+    history.push('history')
   }
 
   function updateScore(index, value) {
