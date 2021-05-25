@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Route, Switch, useHistory } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
-import Header from './components/Header'
 import Navigation from './components/Navigation'
 import GamePage from './pages/GamePage'
 import HistoryPage from './pages/HistoryPage'
@@ -22,7 +21,6 @@ function App() {
 
   return (
     <>
-      <Header>playceholder</Header>
       <Switch>
         <Route exact path="/">
           <PlayPage handleGameSubmit={handleGameSubmit} />
